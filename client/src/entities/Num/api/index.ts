@@ -1,4 +1,4 @@
-import { axiosInstance } from "../../shared/lib/axiosinstance";
+import { axiosInstance } from "../../../shared/lib/axiosinstance";
 import { INum, INumData, NumArrayType } from "../model";
 
 export interface IApiResponseSuccess<T> {
