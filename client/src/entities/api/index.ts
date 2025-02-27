@@ -16,8 +16,10 @@ export interface IApiResponseReject {
 }
 
 interface INumApi {
-  getAll(): Promise<IApiResponseSuccess<NumArrayType>>
-  create(inputsData: INumData): Promise<IApiResponseSuccess<INum>>
+	getAll(): Promise<IApiResponseSuccess<NumArrayType>>
+	create(inputsData: INumData): Promise<IApiResponseSuccess<INum>>
+	delete(id: number): Promise<IApiResponseSuccess<void>>
+	update(id: number, updateData: INumData): Promise<IApiResponseSuccess<INum>>
 }
 
 class NumApi implements INumApi {
@@ -28,6 +30,16 @@ class NumApi implements INumApi {
 
   async create(inputsData: INumData): Promise<IApiResponseSuccess<INum>> {
     const { data } = await axiosInstance.post('/num', inputsData)
+    return data
+  }
+
+  async update(id: number, updateData: INumData): Promise<IApiResponseSuccess<INum>> {
+    const {data} = await axiosInstance.put(`/num${id}`, updateData)
+    return data
+  }
+
+  async delete(id: number): Promise<IApiResponseSuccess<void>> {
+    const {data} = await axiosInstance.delete(`/num${id}`)
     return data
   }
 }
