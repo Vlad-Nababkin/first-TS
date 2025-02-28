@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import Layout from '../widgets/Layout/Layout'
 import RegPage from '../pages/RegPage/RegPage'
 import LogInPage from '../pages/LoginPage/LogInPage'
+import HomePage from '../pages/HomePage/HomePage'
 
 function App(): React.JSX.Element {
 	const [user, setUser] = useState(null)
@@ -12,7 +13,7 @@ function App(): React.JSX.Element {
 		<BrowserRouter>
 			<Routes>
 				<Route path='/' element={<Layout user={user} setUser={setUser} />}>
-					{/* <Route path='/' element={<HomePage />} /> */}
+					<Route path='/' element={<HomePage />} />
 					<Route path='/reg' element={<RegPage setUser={setUser} />} />
 					<Route path='/login' element={<LogInPage setUser={setUser} />} />
 					{/* <Route path='/createNum' element={<CreatePage user={user} />} /> */}

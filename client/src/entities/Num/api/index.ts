@@ -24,8 +24,8 @@ interface INumApi {
 
 class NumApi implements INumApi {
   async getAll(): Promise<IApiResponseSuccess<NumArrayType>> {
-    const {data} = await axiosInstance.get('/num')
-    return data
+    const response = await axiosInstance.get('/num')
+    return response.data.data
   }
 
   async create(inputsData: INumData): Promise<IApiResponseSuccess<INum>> {

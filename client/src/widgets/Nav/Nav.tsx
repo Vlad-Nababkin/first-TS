@@ -3,6 +3,7 @@ import UserApi from '../../entities/User/api'
 import styles from './Nav.module.css' // Импортируем стили
 
 interface IUser {
+  id: number
 	email: string
 	username: string
 }
@@ -59,7 +60,7 @@ export default function Nav({ user, setUser }: INavProps): React.JSX.Element {
 					>
 						Add Num
 					</NavLink>
-					<button type='button' onClick={signOutHandler}>
+					<button type='button' onClick={signOutHandler} >
 						Выйти
 					</button>
 				</>
