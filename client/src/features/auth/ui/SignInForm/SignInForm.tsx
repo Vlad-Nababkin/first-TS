@@ -4,7 +4,9 @@ import UserValidator from '../../../../entities/UserValidator'
 import UserApi from '../../../../entities/User/api'
 import { setAccessToken } from '../../../../shared/lib/axiosinstance'
 
+
 interface IUser {
+  id: number
 	email: string
 	username: string
 }
@@ -23,6 +25,7 @@ const INITIAL_INPUTS_DATA: InputsState = {
 	password: '',
 }
 
+
 export default function SignInForm({
 	setUser,
 }: SignInFormProps): React.JSX.Element {
@@ -34,40 +37,38 @@ export default function SignInForm({
 		setInputs(prev => ({ ...prev, [name]: value }))
 	}
 
-	const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault()
-		const { isValid, error } = UserValidator.validateSignIn(inputs)
+const onSubmitHandler = async (event: FormEvent<HTMLFormElement>) => {
+	event.preventDefault()
+	const { isValid, error } = UserValidator.validateSignIn(inputs)
 
-		if (!isValid) {
-			alert(error)
+	if (!isValid) {
+		alert(error)
+		return
+	}
+
+	try {
+		const {
+			statusCode,
+			data,
+			error: responseError,
+		} = await UserApi.signIn(inputs)
+
+		if (responseError) {
+			alert(responseError)
 			return
 		}
 
-		try {
-			const {
-				statusCode,
-				data,
-				error: responseError,
-			} = await UserApi.signIn(inputs)
-
-			if (responseError) {
-				alert(responseError)
-				return
-			}
-
-			if (statusCode === 200) {
-				setUser(data.user)
-				setAccessToken(data.accessToken)
-				localStorage.setItem('user', JSON.stringify(data.user))
-				setInputs(INITIAL_INPUTS_DATA)
-				navigate('/')
-			}
-		} catch (error) {
-			console.log(error)
-			alert((error as Error).message)
+		if (statusCode === 200 && data.user) {
+			setUser(data.user)
+			setAccessToken(data.accessToken)
+			setInputs(INITIAL_INPUTS_DATA)
+			navigate('/')
 		}
-
+	} catch (error) {
+		console.error('Error during sign in:', error)
+		alert((error as Error).message)
 	}
+}
   const {email, password} = inputs
 	return (
 		<>

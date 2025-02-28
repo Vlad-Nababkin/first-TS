@@ -6,8 +6,19 @@ import { numApi } from "../../entities/Num/api";
 export default function HomePage(): React.JSX.Element {
   const [nums, setNums] = useState<NumArrayType>([])
 
+
+
 useEffect(() => {
-  numApi.getAll().then(setNums)
+	const fetchNums = async () => {
+		try {
+			const nums = await numApi.getAll()
+			setNums(nums)
+		} catch (error) {
+			console.error('Error fetching nums:', error)
+		}
+	}
+
+	fetchNums()
 }, [])
 
 return (

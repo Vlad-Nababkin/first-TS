@@ -1,12 +1,7 @@
-import { NavLink, useNavigate } from 'react-router' // Исправляем импорт на 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router' // Исправляем импорт
 import UserApi from '../../entities/User/api'
+import { IUser } from '../../shared/types'
 import styles from './Nav.module.css' // Импортируем стили
-
-interface IUser {
-  id: number
-	email: string
-	username: string
-}
 
 interface INavProps {
 	user: IUser | null
@@ -30,41 +25,45 @@ export default function Nav({ user, setUser }: INavProps): React.JSX.Element {
 
 	return (
 		<nav className={styles.nav}>
-			<NavLink
-				to='/'
-				className={({ isActive }) => (isActive ? styles.active : '')}
-			>
-				Home
-			</NavLink>
-			{!user && (
-				<>
-					<NavLink
-						to='/login'
-						className={({ isActive }) => (isActive ? styles.active : '')}
-					>
-						Login
-					</NavLink>
-					<NavLink
-						to='/reg'
-						className={({ isActive }) => (isActive ? styles.active : '')}
-					>
-						Sign Up
-					</NavLink>
-				</>
-			)}
-			{user && (
-				<>
-					<NavLink
-						to='/createNum'
-						className={({ isActive }) => (isActive ? styles.active : '')}
-					>
-						Add Num
-					</NavLink>
-					<button type='button' onClick={signOutHandler} >
-						Выйти
-					</button>
-				</>
-			)}
+			<div>
+				<NavLink
+					to='/'
+					className={({ isActive }) => (isActive ? styles.active : '')}
+				>
+					Home
+				</NavLink>
+			</div>
+			<div>
+				{!user && (
+					<>
+						<NavLink
+							to='/login'
+							className={({ isActive }) => (isActive ? styles.active : '')}
+						>
+							Login
+						</NavLink>
+						<NavLink
+							to='/reg'
+							className={({ isActive }) => (isActive ? styles.active : '')}
+						>
+							Sign Up
+						</NavLink>
+					</>
+				)}
+				{user && (
+					<>
+						<NavLink
+							to='/createNum'
+							className={({ isActive }) => (isActive ? styles.active : '')}
+						>
+							Add Num
+						</NavLink>
+						<button type='button' onClick={signOutHandler}>
+							Выйти
+						</button>
+					</>
+				)}
+				</div>
 		</nav>
 	)
 }

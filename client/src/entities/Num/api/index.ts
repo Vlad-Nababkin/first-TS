@@ -34,13 +34,13 @@ class NumApi implements INumApi {
   }
 
   async update(id: number, updateData: INumData): Promise<IApiResponseSuccess<INum>> {
-    const {data} = await axiosInstance.put(`/num${id}`, updateData)
-    return data
+    const response = await axiosInstance.put(`/num/${id}`, updateData)
+    return response.data.data
   }
 
   async delete(id: number): Promise<IApiResponseSuccess<void>> {
-    const {data} = await axiosInstance.delete(`/num${id}`)
-    return data
+    const response = await axiosInstance.delete(`/num/${id}`)
+    return response.data.data
   }
 }
 

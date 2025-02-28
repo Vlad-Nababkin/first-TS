@@ -4,7 +4,8 @@ import { IApiResponseSuccess, ITokens, IUserData } from "../model";
 export default class UserApi {
   static async refreshToken(): Promise<IApiResponseSuccess<ITokens>> {
     const response = await axiosInstance.get('/auth/refreshTokens')
-    return response.data.data
+    console.log(response,'apiResponse')
+    return response.data
   }
 
   static async signUp(userData: IUserData): Promise<IApiResponseSuccess<ITokens>> {

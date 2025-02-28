@@ -1,17 +1,14 @@
-export interface ITokens {
-	user: IUser
-	accessToken: string
-	refreshToken: string
-}
-
-export interface IUserData {
-	username: string
-	email: string
-	password: string
-}
-
-export interface IUser extends IUserData {
+export interface IUser {
 	id: number
+	email: string
+	username: string
+}
+
+export interface INum {
+	id: number
+	name: string
+	number: string
+	user_id: number
 	createdAt: Date
 	updatedAt: Date
 }
@@ -29,5 +26,3 @@ export interface IApiResponseReject {
 	statusCode: number
 	error: string
 }
-
-export type UserArrayType = Array<IUser>

@@ -1,61 +1,52 @@
 .nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-  margin: 20px auto;
-  max-width: 800px;
+  position: fixed; /* Фиксированное позиционирование */
+  top: 0; /* Привязка к верхнему краю */
+  left: 0; /* Привязка к левому краю */
+  width: 100%; /* Ширина на всю страницу */
+  background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
+  backdrop-filter: blur(10px); /* Размытие фона */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Граница снизу */
+  padding: 10px 20px; /* Отступы внутри навигации */
+  display: flex; /* Гибкий контейнер */
+  justify-content: space-between; 
+  align-items: center; 
+  z-index: 1000; /* Убедимся, что навигация поверх других элементов */
 }
 
 .nav a {
-  font-family: 'Poppins', sans-serif;
-  color: #fce9e9;
-  text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #fce9e9; /* Цвет текста */
+  text-decoration: none; /* Убираем подчеркивание */
+  font-family: 'Poppins', sans-serif; /* Шрифт */
+  font-size: 16px; /* Размер текста */
+  font-weight: 500; /* Жирность текста */
+  padding: 10px 15px; /* Отступы внутри ссылок */
+  border-radius: 5px; /* Скругление углов */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Плавные переходы */
 }
 
 .nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2); /* Фон при наведении */
+  color: #ffffff; /* Цвет текста при наведении */
 }
 
 .nav a.active {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.3); /* Фон активной ссылки */
+  color: #ffffff; /* Цвет текста активной ссылки */
 }
 
 .nav button {
-  font-family: 'Poppins', sans-serif;
-  background-color: #ffffff;
-  color: #080710;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #ffffff; /* Фон кнопки */
+  color: #080710; /* Цвет текста кнопки */
+  border: none; /* Убираем границу */
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  font-size: 16px; /* Размер текста */
+  font-weight: 600; /* Жирность текста */
+  border-radius: 5px; /* Скругление углов */
+  cursor: pointer; /* Курсор в виде указателя */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Плавные переходы */
 }
 
-nav button {
-  background-color: #ff4d4d;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 500;
-}
+.nav button:hover {
+  background-color: rgba(255, 255, 255, 0.8); /* Фон при наведении */
+  color: #080710; /* Цвет текста при наведении */
+} 
